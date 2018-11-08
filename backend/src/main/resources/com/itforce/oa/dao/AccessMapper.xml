@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itforce.oa.dao.AccessMapper">
+  <resultMap id="BaseResultMap" type="com.itforce.oa.bean.Access">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fuction_id" jdbcType="INTEGER" property="fuctionId" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="access_type" jdbcType="VARCHAR" property="accessType" />
+    <result column="cre_date" jdbcType="TIMESTAMP" property="creDate" />
+    <result column="cre_user" jdbcType="VARCHAR" property="creUser" />
+    <result column="upd_date" jdbcType="TIMESTAMP" property="updDate" />
+    <result column="upd_user" jdbcType="VARCHAR" property="updUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fuction_id, group_id, permission, access_type, cre_date, cre_user, upd_date, 
+    upd_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from access
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from access
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.itforce.oa.bean.Access">
+    insert into access (id, fuction_id, group_id, 
+      permission, access_type, cre_date, 
+      cre_user, upd_date, upd_user
+      )
+    values (#{id,jdbcType=INTEGER}, #{fuctionId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, 
+      #{permission,jdbcType=VARCHAR}, #{accessType,jdbcType=VARCHAR}, #{creDate,jdbcType=TIMESTAMP}, 
+      #{creUser,jdbcType=VARCHAR}, #{updDate,jdbcType=TIMESTAMP}, #{updUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itforce.oa.bean.Access">
+    insert into access
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fuctionId != null">
+        fuction_id,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="accessType != null">
+        access_type,
+      </if>
+      <if test="creDate != null">
+        cre_date,
+      </if>
+      <if test="creUser != null">
+        cre_user,
+      </if>
+      <if test="updDate != null">
+        upd_date,
+      </if>
+      <if test="updUser != null">
+        upd_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fuctionId != null">
+        #{fuctionId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="accessType != null">
+        #{accessType,jdbcType=VARCHAR},
+      </if>
+      <if test="creDate != null">
+        #{creDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creUser != null">
+        #{creUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updDate != null">
+        #{updDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updUser != null">
+        #{updUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itforce.oa.bean.Access">
+    update access
+    <set>
+      <if test="fuctionId != null">
+        fuction_id = #{fuctionId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="accessType != null">
+        access_type = #{accessType,jdbcType=VARCHAR},
+      </if>
+      <if test="creDate != null">
+        cre_date = #{creDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creUser != null">
+        cre_user = #{creUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updDate != null">
+        upd_date = #{updDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updUser != null">
+        upd_user = #{updUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itforce.oa.bean.Access">
+    update access
+    set fuction_id = #{fuctionId,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=INTEGER},
+      permission = #{permission,jdbcType=VARCHAR},
+      access_type = #{accessType,jdbcType=VARCHAR},
+      cre_date = #{creDate,jdbcType=TIMESTAMP},
+      cre_user = #{creUser,jdbcType=VARCHAR},
+      upd_date = #{updDate,jdbcType=TIMESTAMP},
+      upd_user = #{updUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
